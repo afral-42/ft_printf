@@ -6,11 +6,12 @@
 /*   By: abounoua <abounoua@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 14:35:09 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/14 14:57:30 by abounoua         ###   ########lyon.fr   */
+/*   Updated: 2025/11/14 16:11:16 by abounoua         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 static int	ft_is_space(char c)
 {
@@ -47,7 +48,6 @@ int	ft_atoi(const char *nptr)
 	return (result * sign);
 }
 
-
 static t_params	*handle_args(const char *format)
 {
 	t_params	*params;
@@ -57,22 +57,36 @@ static t_params	*handle_args(const char *format)
 		return NULL;
 	params->flags = 0;
 	params->size = 0;
-	if (*format == '-')
-		params->flags |= FLAG_MINUS;
-	else if (*format == '0')
-		params->flags |= FLAG_ZERO;
-	else
-		params->flags = 0;
-	params->size = ft_atoi(format + 1);
+	while (*format != '\0')
+	{
+		if (*format == '-')
+		{
+			params->flags |= FLAG_MINUS;
+			params->flags = params->flags & ~FLAG_ZERO;
+		}
+		else if (*format == '0')
+		{
+			if (!(params->flags & FLAG_MINUS))
+				params->flags |= FLAG_ZERO;
+		}
+		else if (*format >= '1' && *format <= '9')
+			break ;
+		else
+			return (NULL);
+		format++;
+	}
+	params->size = ft_atoi(format);
 	return (params);
 }
 
-#include <stdio.h>
 int	main(void)
 {
 	t_params	*test;
 
-	test = handle_args("-123d");
-	printf("%d\n%d\n", test->flags, test->size);
+	test = handle_args("-00}---0-123d");
+	if (!test)
+		printf("Argument invalide !");
+	else
+		printf("Flag - : %d\nFlag 0 : %d\n%d\n", test->flags & FLAG_MINUS, test->flags & FLAG_ZERO, test->size);
 	free(test);
 }
