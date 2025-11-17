@@ -6,13 +6,13 @@
 /*   By: abounoua <abounoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:13:44 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/14 11:21:06 by abounoua         ###   ########lyon.fr   */
+/*   Updated: 2025/11/17 16:01:52 by abounoua         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	handle_format(char format, va_list args)
+static int	handle_format(char format, va_list args)
 {
 	if ('c' == format)
 		return (ft_print_char(va_arg(args, int)));
