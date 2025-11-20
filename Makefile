@@ -26,7 +26,8 @@ BONUS_BASE	:=	ft_printf_bonus \
 				parser_bonus \
 				utils_bonus \
 
-
+HEADERS		:=	includes/libft.h includes/ft_printf.h
+HEADERS_B	:=	includes/ft_printf_bonus.h includes/parser_bonus.h includes/libft.h
 SRCS		:=	$(addsuffix .c, $(addprefix $(SRC_DIR),$(BASENAME)))
 OBJS		:=	$(addsuffix .o, $(addprefix $(BUILD_DIR),$(BASENAME)))
 B_SRCS		:=	$(addsuffix .c, $(addprefix $(SRC_DIR),$(BONUS_BASE)))
@@ -35,7 +36,7 @@ NAME		:=	libftprintf.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT) $(HEADERS)
 	cp $(LIBFT) $@
 	ar rcs $@ $(OBJS)
 
@@ -55,7 +56,7 @@ fclean: clean
 
 re: fclean all
 
-bonus: $(B_OBJS) $(LIBFT)
+bonus: $(B_OBJS) $(LIBFT) $(HEADERS_B)
 	cp $(LIBFT) $(NAME)
 	ar rcs $(NAME) $(B_OBJS)
 
