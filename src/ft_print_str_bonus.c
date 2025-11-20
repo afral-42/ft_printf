@@ -31,14 +31,10 @@ int	ft_print_str(t_params *params, char *str)
 	else
 		size = ft_strlen(str);
 	count = 0;
-	if (params->flags & FLAG_MINUS)
-	{
-		count += ft_putnstr(str, size);
-		count += handle_space(params, size);
-		return (count);
-	}
-	else
+	if (!(params->flags & FLAG_MINUS))
 		count += handle_space(params, size);
 	count += ft_putnstr(str, size);
+	if (params->flags & FLAG_MINUS)
+		count += handle_space(params, size);
 	return (count);
 }

@@ -18,14 +18,10 @@ int	ft_print_char(t_params *params, char c)
 	int	count;
 
 	count = 0;
-	if (params->flags & FLAG_MINUS)
-	{
-		count += write(1, &c, 1);
-		count += handle_space(params, 1);
-		return (count);
-	}
-	else
+	if (!(params->flags & FLAG_MINUS))	
 		count += handle_space(params, 1);
 	count += write(1, &c, 1);
+	if (params->flags & FLAG_MINUS)
+		count += handle_space(params, 1);
 	return (count);
 }

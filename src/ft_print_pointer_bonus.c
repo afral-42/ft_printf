@@ -45,18 +45,11 @@ int	ft_print_pointer(t_params *params, void *p)
 	count = 0;
 	if (!p)
 		return (ft_print_null('p'));
-	if (params->flags & FLAG_MINUS)
-	{
-		ft_putnstr("0x", 2);
-		count += 2;
-		ft_putaddress((uintptr_t)p, &count);
+	if (!(params->flags & FLAG_MINUS))	
 		count += handle_space(params, pointer_len((uintptr_t)p) + 2);
-		return (count);
-	}
-	else
-		count += handle_space(params, pointer_len((uintptr_t)p) + 2);
-	ft_putnstr("0x", 2);
-	count += 2;
+	count += ft_putnstr("0x", 2);
 	ft_putaddress((uintptr_t)p, &count);
+	if (params->flags & FLAG_MINUS)
+		count += handle_space(params, pointer_len((uintptr_t)p) + 2);
 	return (count);
 }
