@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_null_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abounoua <abounoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 11:09:57 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/20 14:10:30 by abounoua         ###   ########.fr       */
+/*   Created: 2025/11/13 16:15:44 by abounoua          #+#    #+#             */
+/*   Updated: 2025/11/20 14:08:47 by abounoua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf_bonus.h"
 
-# include <stdint.h> 
-# include <unistd.h>
-# include <stdarg.h>
-
-int		ft_print_char(char c);
-int		ft_print_str(char *str);
-int		ft_print_pointer(void *p);
-int		ft_print_nbr(int nb);
-int		ft_print_unsigned(unsigned int nb);
-int		ft_print_null(char format);
-int		ft_print_hex(unsigned int nb, int maj);
-int		ft_printf(const char *format, ...);
-
-#endif
+int	ft_print_null(char format)
+{
+	if (format == 's')
+	{
+		ft_putnstr("(null)", 6);
+		return (6);
+	}
+	else
+	{
+		ft_putnstr("(nil)", 5);
+		return (5);
+	}
+}

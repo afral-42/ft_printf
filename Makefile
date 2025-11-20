@@ -1,9 +1,9 @@
 CC			:=	cc
 CFLAGS		:=	-Wall -Wextra -Werror
 CPPFLAGS	:=	-Iincludes
-#DEPSFLAGS	:=	-MD -MP -MM
 SRC_DIR		:=	src/
 BUILD_DIR	:=	.build/
+LIBFT		:=	libft/libft.a
 MAKEFLAGS	+=	-j $$(nproc)
 
 BASENAME	:=	ft_printf \
@@ -15,30 +15,51 @@ BASENAME	:=	ft_printf \
 				ft_print_null \
 				ft_print_hex
 
+BONUS_BASE	:=	ft_printf_bonus \
+				ft_print_char_bonus \
+				ft_print_str_bonus \
+				ft_print_pointer_bonus \
+				ft_print_nbr_bonus \
+				ft_print_unsigned_bonus \
+				ft_print_null_bonus \
+				ft_print_hex_bonus \
+				parser_bonus \
+				utils_bonus \
+
+
 SRCS		:=	$(addsuffix .c, $(addprefix $(SRC_DIR),$(BASENAME)))
 OBJS		:=	$(addsuffix .o, $(addprefix $(BUILD_DIR),$(BASENAME)))
-DEPS		:=	$(addsuffix .d, $(addprefix $(BUILD_DIR),$(BASENAME)))
+B_SRCS		:=	$(addsuffix .c, $(addprefix $(SRC_DIR),$(BONUS_BASE)))
+B_OBJS		:=	$(addsuffix .o, $(addprefix $(BUILD_DIR),$(BONUS_BASE)))
 NAME		:=	libftprintf.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBFT)
+	cp $(LIBFT) $@
 	ar rcs $@ $(OBJS)
 
 $(BUILD_DIR):
 	mkdir -p $@
 
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(BUILD_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@ $(CPPFLAGS) #$(DEPSFLAGS)
+	$(CC) $(CFLAGS) -c $< -o $@ $(CPPFLAGS)
 
 clean:
 	rm -rf $(BUILD_DIR)
+	make -C libft/ clean
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f $(LIBFT)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: $(B_OBJS) $(LIBFT)
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(B_OBJS)
 
-#-include $(DEPS)
+$(LIBFT):
+	make -C libft/
+
+.PHONY: all clean fclean re bonus
