@@ -6,7 +6,7 @@
 /*   By: abounoua <abounoua@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 13:03:07 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/12 16:30:28 by abounoua         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 20:07:50 by anselme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ static size_t	get_splitted_len(size_t *len, char const *s, char c)
 static char	*extract_word(char const *s, char c)
 {
 	size_t	len;
-	size_t	i;
 	char	*result;
 
 	len = 0;
-	i = 0;
 	while (s[len] != '\0' && s[len] != c)
 		len++;
 	result = malloc(sizeof(char) * (len + 1));

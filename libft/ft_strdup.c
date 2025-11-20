@@ -6,7 +6,7 @@
 /*   By: abounoua <abounoua@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 09:18:57 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/06 11:24:34 by abounoua         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 20:06:54 by anselme          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_strdup(const char *s)
 	size_t	len;
 
 	len = ft_strlen(s);
-	dup = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	dup = malloc(sizeof(char) * (len + 1));
 	if (!dup)
 		return (NULL);
 	ft_strcpy(dup, s);
