@@ -6,7 +6,7 @@
 /*   By: abounoua <abounoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 11:09:57 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/20 14:10:30 by abounoua         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:16:39 by abounoua         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		ft_print_nbr(int nb);
 int		ft_print_unsigned(unsigned int nb);
 int		ft_print_null(char format);
 int		ft_print_hex(unsigned int nb, int maj);
-int		ft_printf(const char *format, ...);
+int		ft_printf(const char *format, ...)
+		__attribute__((format(printf, 1, 2)));
 
 #endif

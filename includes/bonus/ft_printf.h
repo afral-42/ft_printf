@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abounoua <abounoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/13 11:09:57 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/20 14:19:08 by abounoua         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 16:17:13 by abounoua         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_BONUS_H
-# define FT_PRINTF_BONUS_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 # include <stdint.h>
 # include <unistd.h>
@@ -26,7 +26,8 @@ int				ft_print_nbr(t_params *params, int nb);
 int				ft_print_unsigned(t_params *params, unsigned int nb);
 int				ft_print_null(char format);
 int				ft_print_hex(t_params *params, unsigned int nb, int maj);
-int				ft_printf(const char *format, ...);
+int				ft_printf(const char *format, ...)
+				__attribute__((format(printf, 1, 2)));
 int				ft_putnstr(char *str, unsigned int size);
 int				ft_putchar_r(char c);
 

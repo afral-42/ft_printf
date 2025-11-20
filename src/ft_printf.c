@@ -6,7 +6,7 @@
 /*   By: abounoua <abounoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:13:44 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/17 16:01:52 by abounoua         ###   ########lyon.fr   */
+/*   Updated: 2025/11/20 16:15:12 by abounoua         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		printed_count;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	printed_count = 0;
 	while ('\0' != *format)

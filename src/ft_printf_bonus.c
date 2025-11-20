@@ -6,11 +6,11 @@
 /*   By: abounoua <abounoua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 10:13:44 by abounoua          #+#    #+#             */
-/*   Updated: 2025/11/20 14:09:21 by abounoua         ###   ########.fr       */
+/*   Updated: 2025/11/20 16:27:27 by abounoua         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf_bonus.h"
+#include "ft_printf.h"
 #include "parser_bonus.h"
 
 int	handle_format(t_params *params, va_list args)
@@ -39,6 +39,8 @@ int	ft_printf(const char *format, ...)
 	va_list	args;
 	int		printed_count;
 
+	if (!format)
+		return (-1);
 	va_start(args, format);
 	printed_count = 0;
 	while ('\0' != *format)

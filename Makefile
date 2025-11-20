@@ -6,7 +6,6 @@ SRC_DIR   := src/
 BUILD_DIR := .build/
 BUILD_BONUS_DIR := $(BUILD_DIR)bonus/
 LIBFT     := libft/libft.a
-MAKEFLAGS += -j $$(nproc)
 
 BASENAME  := ft_printf \
              ft_print_char \
@@ -29,7 +28,7 @@ BONUS_BASE := ft_printf_bonus \
               utils_bonus
 
 HEADERS   := includes/libft.h includes/ft_printf.h
-HEADERS_B := includes/bonus/ft_printf_bonus.h includes/bonus/parser_bonus.h includes/bonus/libft.h
+HEADERS_B := includes/bonus/ft_printf.h includes/bonus/parser_bonus.h includes/bonus/libft.h
 
 SRCS      := $(addprefix $(SRC_DIR), $(addsuffix .c, $(BASENAME)))
 OBJS      := $(addprefix $(BUILD_DIR), $(addsuffix .o, $(BASENAME)))
@@ -44,17 +43,17 @@ $(NAME): $(OBJS) $(LIBFT) $(HEADERS)
 	cp $(LIBFT) $@
 	ar rcs $@ $(OBJS)
 
-$(BUILD_DIR):
-	mkdir -p $@
-
-$(BUILD_BONUS_DIR):
-	mkdir -p $@
-
 $(BUILD_DIR)%.o: $(SRC_DIR)%.c | $(BUILD_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 $(BUILD_BONUS_DIR)%.o: $(SRC_DIR)%.c | $(BUILD_BONUS_DIR)
 	$(CC) $(CFLAGS) $(CPPFLAGS_B) -c $< -o $@
+
+$(BUILD_DIR):
+	mkdir -p $@
+
+$(BUILD_BONUS_DIR):
+	mkdir -p $@
 
 clean:
 	rm -rf $(BUILD_DIR)
